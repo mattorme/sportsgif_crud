@@ -1,14 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Hello World</title>
-  <link rel='stylesheet' href='/stylesheets/main.css'>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-  <%= yield %>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-bar">
+        <ul>
+          <h1 class="title"> <a href="#">SportsGIF</a></h1>
+          <input type="text" placeholder="Search...">
+          <a href="/"><li>Home</li></a>
+          <a href="#"><li>Sports</li></a>
+          <a href="#"><li>Athletes</li></a>
+          <a href="/login"><li>Sign in</li></a>
+          <a href="#"><li>Sign up</li></a>
+        </ul>
+      </nav>
+    </header>
+    <%= yield %>
+  </body>
 </html>

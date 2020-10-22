@@ -8,8 +8,16 @@
       src="<%= gif["gif_url"] %>"
       alt=""/>
       <p class="description"><%= gif["description"]%>.</p>
-   <a href="">  <p class="gif-sport <%=gif["sport"]%>"><%=gif["sport"]%></p></a> 
+      <a href="">  <p class="gif-sport <%=gif["sport"]%>"><%=gif["sport"]%></p></a> 
     <a href=""> <p class="gif-athlete"><%=gif["athlete"]%></p></a> 
+    <% if logged_in? && gif['username'] == current_user['username']%>
+     <a href="/gifs/<%=gif['id']%>/edit">edit</a>
+    <form action="/gifs/<%= gif['id']%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button>delete</button>
+    <% end %>
+    </form>
+   
   </div>
 
   

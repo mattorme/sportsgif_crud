@@ -32,11 +32,35 @@ get '/gifs/new' do
   erb :new
 end
 
-
 post '/gifs' do
-  sql = "insert into gifs (description, gif_url, sport, athlete) values ('#{params["description"]}', '#{params["gif_url"]}', '#{params["sport"]}', '#{params["athlete"]}');"
+  sql = "insert into gifs (description, gif_url, username, sport, athlete) values ('#{params["description"]}', '#{params["gif_url"]}', '#{params["username"]}', '#{params["sport"]}', '#{params["athlete"]}');"
   run_sql(sql)
   redirect "/"
+end
+
+delete '/gifs/:id' do
+  db = PG.connect(dbname: 'sportsgif_db')
+  sql = "DELETE FROM gifs WHERE id = #{params['id']};"
+  db.exec(sql)
+  redirect "/"
+end
+
+get '/gifs/:id/edit' do
+  db = PG.connect(dbname: 'sportsgif_db')
+  sql = "SELECT * FROM gifs WHERE id = #{params['id']}"
+  results = db.exec(sql)
+  db.close
+
+  erb :edit, locals: { gif: results[0]}
+end
+
+patch '/gifs/:id' do
+  db = PG.connect(dbname: 'sportsgif_db')
+  sql = "update gifs set description = '#{params["description"]}', sport = '#{params["sport"]}', athlete = '#{params["athlete"]}' where id = #{params["id"]};"
+  db.exec(sql)
+
+  redirect "/"
+  
 end
 
 get '/login' do

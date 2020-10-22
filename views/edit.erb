@@ -1,0 +1,20 @@
+<h1>Edit Gif</h1>
+
+<% if logged_in? && gif['username'] == current_user['username']%>
+
+<form action="/gifs/<%= gif['id']%>" method="post">
+
+    <input type="hidden" name="_method" value="patch">
+
+  <label for="">description</label>
+  <input type="text" name="description" value="<%= gif['description']%>">
+  <label for="">sport</label>
+  <input type="text" name="sport" value="<%= gif['sport']%>">
+  <label for="">athlete</label>
+  <input type="text" name="athlete" value="<%= gif['athlete']%>">
+
+  <button>update</button>
+</form>
+
+<% else redirect "/login" %>
+<% end %>

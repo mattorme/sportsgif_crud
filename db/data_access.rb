@@ -23,3 +23,8 @@ def find_user_by_id(id)
     results = run_sql("select * from users where id = '#{id}';")
     return results[0]
 end
+
+def find_gif_by_id(id)
+    results = run_sql("select * from gifs where id = #{id};")
+    return results[0]
+end

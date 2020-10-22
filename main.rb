@@ -28,8 +28,10 @@ get '/' do
 end
 
 get '/gifs/new' do
+  redirect '/login' unless logged_in?
   erb :new
 end
+
 
 post '/gifs' do
   sql = "insert into gifs (description, gif_url, sport, athlete) values ('#{params["description"]}', '#{params["gif_url"]}', '#{params["sport"]}', '#{params["athlete"]}');"

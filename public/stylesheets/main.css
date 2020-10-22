@@ -25,6 +25,10 @@ body {
 
 /* nav bar */
 
+.mma {
+  color: red;
+}
+
 .title {
   color: var(--font-color);
   font-size: 30px;
@@ -72,9 +76,9 @@ body {
 
 .container {
   margin: 10%;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 25px;
+  grid-gap: 25px; */
 }
 
 .gif-container {
@@ -86,9 +90,52 @@ body {
 
 .gif-container img {
   width: 100%;
+  object-fit: cover;
 }
 
 .gif-container p {
   color: var(--font-color);
   text-align: justify;
+}
+
+/* log in */
+
+.form-container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.form-container form {
+  background-color: var(--secondary-color);
+  margin-top: 50%;
+  text-align: center;
+  border-radius: 20px;
+  padding-bottom: 10px;
+}
+
+.form-container h1 {
+  text-align: center;
+  font-size: 32px;
+  padding-top: 10px;
+}
+
+.form-container .form-label {
+  display: block;
+}
+
+.form-container .form-input {
+  width: 33%;
+}
+
+.form-container button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: var(--font-color);
+  border: none;
+  background-color: var(--tertiary-color);
+  padding: 5px;
+  border-radius: 5px;
+  width: 33%;
 }

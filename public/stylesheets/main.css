@@ -56,6 +56,18 @@ body {
   text-decoration: none;
 }
 
+.logout-btn {
+  color: var(--font-color);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  padding-top: 1px;
+  cursor: pointer;
+  outline: none;
+}
+
 /* gifs */
 
 .container {

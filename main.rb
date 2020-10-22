@@ -23,7 +23,8 @@ end
 
 get '/' do
   gifs = all_gifs()
-  erb :index, locals: { gifs: gifs }
+  # username = find_user_by_username()
+  erb :index, locals: { gifs: gifs}
 end
 
 get '/gifs/new' do
@@ -41,7 +42,7 @@ get '/login' do
 end
 
 post '/login' do 
-  user = find_user_by_email(params['email'])
+  user = find_user_by_username(params['username'])
   if BCrypt::Password.new(user['password_digest']) == params['password']
     session[:user_id] = user['id']
     redirect "/"
@@ -49,3 +50,19 @@ post '/login' do
     erb :login
   end
 end
+
+delete '/logout' do
+  session[:user_id] = nil
+  redirect '/'
+end
+
+get '/signup' do
+  erb :signup
+end
+
+post '/signup' do
+  password_digest = BCrypt::Password.create(params["password"])
+  run_sql("INSERT INTO users (email, username, password_digest) VALUES ('#{params["email"]}', '#{params["username"]}', '#{password_digest}');")
+  redirect "/"
+end
+

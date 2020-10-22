@@ -18,3 +18,4 @@ CREATE TABLE users (
     password_digest TEXT
 );
 
+ALTER TABLE users ADD COLUMN username VARCHAR(30);

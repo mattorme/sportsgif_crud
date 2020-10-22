@@ -14,6 +14,11 @@ def find_user_by_email(email)
     return results[0]
 end
 
+def find_user_by_username(username)
+    results = run_sql("select * from users where username = '#{username}';")
+    return results[0]
+end
+
 def find_user_by_id(id)
     results = run_sql("select * from users where id = '#{id}';")
     return results[0]

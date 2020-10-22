@@ -33,7 +33,7 @@ get '/gifs/new' do
 end
 
 post '/gifs' do
-  sql = "insert into gifs (description, gif_url, username, sport, athlete) values ('#{params["description"]}', '#{params["gif_url"]}', '#{params["username"]}', '#{params["sport"]}', '#{params["athlete"]}');"
+  sql = "insert into gifs (description, gif_url, username, sport, athlete) values ('#{params["description"]}', '#{params["gif_url"]}', '#{current_user["username"]}', '#{params["sport"]}', '#{params["athlete"]}');"
   run_sql(sql)
   redirect "/"
 end

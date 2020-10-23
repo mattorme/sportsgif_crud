@@ -41,7 +41,7 @@ end
 delete '/gifs/:id' do
 
   sql = "DELETE FROM gifs WHERE id = #{params['id']};"
-  db.exec(sql)
+  run_sql(sql)
   redirect "/"
 end
 

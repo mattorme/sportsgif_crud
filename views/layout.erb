@@ -13,7 +13,12 @@
       <nav class="nav-bar">
         <ul>
           <h1 class="title"> <a href="/">SportsGIF</a></h1>
-          <input type="text" placeholder="Search...">
+
+          <form action="/search">
+          <input type="text" placeholder="Search..." name="q">
+
+          </form>
+
            <% if logged_in?  %>
           <a href="#"><li><%=current_user["username"]%></li></a>
           

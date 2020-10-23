@@ -6,7 +6,7 @@ def run_sql(sql, params = [])
 end
 
 def all_gifs()
-    run_sql("select * from gifs;")
+    run_sql("select * from gifs order by id desc;")
 end
 
 def find_user_by_email(email)

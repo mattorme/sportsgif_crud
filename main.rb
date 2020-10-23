@@ -92,3 +92,11 @@ post '/signup' do
   redirect "/"
 end
 
+get '/search' do
+  db = PG.connect(dbname: 'sportsgif_db')
+  sql = "select * from gifs where sport like '%#{params['q']}%' or athlete like '%#{params['q']}%' or description like '%#{params['q']}%';"
+  gifs = db.exec(sql)
+
+  erb :index, locals: {gifs: gifs}
+end
+

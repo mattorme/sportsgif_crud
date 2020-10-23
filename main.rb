@@ -122,7 +122,7 @@ end
 
 get '/gifs/:username' do
 
-  sql = ("select * from gifs where username = '#{params['username']}'")
+  sql = ("select * from gifs where username = '#{params['username']} order by id desc limit #{num}'")
   gifs = run_sql(sql)
 
   erb :index, locals: {gifs: gifs}

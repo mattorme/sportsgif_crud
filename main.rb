@@ -22,7 +22,7 @@ end
 
 
 get '/' do
-  gifs = all_gifs()
+  gifs = recent_gifs(10)
   # username = find_user_by_username()
   erb :index, locals: { gifs: gifs}
 end
@@ -92,11 +92,38 @@ post '/signup' do
   redirect "/"
 end
 
+# get '/search' do
+
+#   sql = "select * from gifs where sport like '%#{params['q']}%' or athlete like '%#{params['q']}%' or description like '%#{params['q']}%';"
+#   gifs = run_sql(sql)
+
+#   erb :index, locals: {gifs: gifs}
+# end
+
 get '/search' do
 
-  sql = "select * from gifs where sport like '%#{params['q']}%' or athlete like '%#{params['q']}%' or description like '%#{params['q']}%';"
+  if params['q']
+    sql = "select * from gifs where sport like '%#{params['q']}%' or athlete like '%#{params['q']}%' or description like '%#{params['q']}%' or username like '%#{params['q']}';"
+  elsif params['sport']
+    sql = "select * from gifs where sport = '#{params['sport']}';"
+  elsif params['athlete']
+    sql = "select * from gifs where athlete = '#{params['athlete']}';"
+
+  else
+    redirect '/'
+  end
+
+
   gifs = run_sql(sql)
 
   erb :index, locals: {gifs: gifs}
 end
 
+
+get '/gifs/:username' do
+
+  sql = ("select * from gifs where username = '#{params['username']}'")
+  gifs = run_sql(sql)
+
+  erb :index, locals: {gifs: gifs}
+end

@@ -5,7 +5,7 @@ def run_sql(sql, params = [])
     return results
 end
 
-def all_gifs()
+def all_gifs
     run_sql("select * from gifs order by id desc;")
 end
 
@@ -27,4 +27,8 @@ end
 def find_gif_by_id(id)
     results = run_sql("select * from gifs where id = #{id};")
     return results[0]
+end
+
+def recent_gifs(num)
+    run_sql("select * from gifs order by id desc limit #{num};")
 end

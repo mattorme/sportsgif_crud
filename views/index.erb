@@ -9,9 +9,10 @@
       alt=""/>
       <p class="description"><%= gif["description"]%></p>
 
-      <a href="">  <p class="gif-sport <%=gif["sport"]%>"><%=gif["sport"]%></p></a> 
+      <a href="/search?sport=<%=gif["sport"]%>">  <p class="gif-sport <%=gif["sport"]%>"><%=gif["sport"]%></p></a> 
 
-    <a href=""> <p class="gif-athlete"><%=gif["athlete"]%></p></a> 
+    <a href="/search?athlete=<%=gif["athlete"]%>"> <p class="gif-athlete"><%=gif["athlete"]%></p></a> 
+  <p class="gif-username"> Posted by: <a href="/gifs/<%=gif["username"]%>"> <%=gif["username"]%></a></p>
     <% if logged_in? && gif['username'] == current_user['username']%>
     <a href="/gifs/<%=gif['id']%>/edit">edit</a>
     <form action="/gifs/<%= gif['id']%>" method="post">

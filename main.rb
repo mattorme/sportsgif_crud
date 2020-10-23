@@ -39,25 +39,25 @@ post '/gifs' do
 end
 
 delete '/gifs/:id' do
-  db = PG.connect(dbname: 'sportsgif_db')
+
   sql = "DELETE FROM gifs WHERE id = #{params['id']};"
   db.exec(sql)
   redirect "/"
 end
 
 get '/gifs/:id/edit' do
-  db = PG.connect(dbname: 'sportsgif_db')
+
   sql = "SELECT * FROM gifs WHERE id = #{params['id']}"
-  results = db.exec(sql)
+  results = run_sql(sql)
   db.close
 
   erb :edit, locals: { gif: results[0]}
 end
 
 patch '/gifs/:id' do
-  db = PG.connect(dbname: 'sportsgif_db')
+
   sql = "update gifs set description = '#{params["description"]}', sport = '#{params["sport"]}', athlete = '#{params["athlete"]}' where id = #{params["id"]};"
-  db.exec(sql)
+  run_sql(sql)
 
   redirect "/"
   
@@ -93,9 +93,9 @@ post '/signup' do
 end
 
 get '/search' do
-  db = PG.connect(dbname: 'sportsgif_db')
+
   sql = "select * from gifs where sport like '%#{params['q']}%' or athlete like '%#{params['q']}%' or description like '%#{params['q']}%';"
-  gifs = db.exec(sql)
+  gifs = run_sql(sql)
 
   erb :index, locals: {gifs: gifs}
 end

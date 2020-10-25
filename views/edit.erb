@@ -1,20 +1,20 @@
 <h1>Edit Gif</h1>
 
 <% if logged_in? && gif['username'] == current_user['username']%>
-
+<div class="form-container">
 <form action="/gifs/<%= gif['id']%>" method="post">
 
     <input type="hidden" name="_method" value="patch">
+  <h1>EDIT</h1>
+  <label class = "form-label">Description</label>
+  <input type="text" name="description" class="form-input" value="<%= gif['description']%>">
+  <label class = "form-label">Sport</label>
+  <input type="text" name="sport" class="form-input" value="<%= gif['sport']%>">
+  <label class = "form-label">Athlete</label>
+  <input type="text" name="athlete" class="form-input" value="<%= gif['athlete']%>">
 
-  <label for="">description</label>
-  <input type="text" name="description" value="<%= gif['description']%>">
-  <label for="">sport</label>
-  <input type="text" name="sport" value="<%= gif['sport']%>">
-  <label for="">athlete</label>
-  <input type="text" name="athlete" value="<%= gif['athlete']%>">
-
-  <button>update</button>
+  <button class="pointer-btn">Update</button>
 </form>
-
+</div>
 <% else redirect "/login" %>
 <% end %>

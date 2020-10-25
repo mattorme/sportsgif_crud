@@ -20,7 +20,7 @@
           </form>
 
            <% if logged_in?  %>
-          <a href="#"><li><%=current_user["username"]%></li></a>
+          <a href="/gifs/<%=current_user["username"]%>"><li><%=current_user["username"]%></li></a>
           
           <a href="/gifs/new"><li>Create Gif</li></a>
           <% end %>

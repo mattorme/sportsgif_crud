@@ -22,7 +22,7 @@ end
 
 
 get '/' do
-  gifs = recent_gifs(10)
+  gifs = recent_gifs(21)
   # username = find_user_by_username()
   erb :index, locals: { gifs: gifs}
 end
@@ -49,7 +49,7 @@ get '/gifs/:id/edit' do
 
   sql = "SELECT * FROM gifs WHERE id = #{params['id']}"
   results = run_sql(sql)
-  db.close
+
 
   erb :edit, locals: { gif: results[0]}
 end
@@ -103,11 +103,11 @@ end
 get '/search' do
 
   if params['q']
-    sql = "select * from gifs where sport like '%#{params['q']}%' or athlete like '%#{params['q']}%' or description like '%#{params['q']}%' or username like '%#{params['q']}';"
+    sql = "select * from gifs where sport like '%#{params['q']}%' or athlete like '%#{params['q']}%' or description like '%#{params['q']}%' or username like '%#{params['q']}' order by id desc limit 21;"
   elsif params['sport']
-    sql = "select * from gifs where sport = '#{params['sport']}';"
+    sql = "select * from gifs where sport = '#{params['sport']}' order by id desc limit 21;"
   elsif params['athlete']
-    sql = "select * from gifs where athlete = '#{params['athlete']}';"
+    sql = "select * from gifs where athlete = '#{params['athlete']}' order by id desc limit 21;"
 
   else
     redirect '/'
@@ -122,7 +122,7 @@ end
 
 get '/gifs/:username' do
 
-  sql = ("select * from gifs where username = '#{params['username']} order by id desc limit #{num}'")
+  sql = ("select * from gifs where username = '#{params['username']}' order by id desc limit 21;")
   gifs = run_sql(sql)
 
   erb :index, locals: {gifs: gifs}

@@ -4,41 +4,34 @@
     <meta charset="UTF-8" />
     <title>Sports Gif</title>
     <link rel="stylesheet" href="/stylesheets/main.css" />
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <header>
-      <nav class="nav-bar">
-        <ul>
-          <h1 class="title"> <a href="/">SportsGIF</a></h1>
-
-          <form action="/search">
+</head>
+<body>
+  <header>
+    <nav class="nav-bar">
+      <ul>
+        <h1 class="title"> <a href="/">SportsGIF</a></h1>
+        <form action="/search">
           <input type="text" placeholder="Search..." name="q">
-
-          </form>
-
-           <% if logged_in?  %>
+        </form>
+        <% if logged_in?  %>
           <a href="/gifs/<%=current_user["username"]%>"><li><%=current_user["username"]%></li></a>
-          
           <a href="/gifs/new"><li>Create Gif</li></a>
-          <% end %>
-     
-          <% if logged_in?  %>
+        <% end %>
+        <% if logged_in?  %>
           <form action="/logout" method="post">
           <input type="hidden" name="_method" value="delete">
           <button class="logout-btn"><li>Logout</li></button> 
           </form>
-            <% else %>
+        <% else %>
           <a href="/login"><li>Sign in</li></a>
           <a href="/signup"><li>Sign up</li></a>
-          <%end  %>
-        </ul>
-      </nav>
-    </header>
+        <% end  %>
+      </ul>
+    </nav>
+  </header>
 
 
-    <%= yield %>
-  </body>
+  <%= yield %>
+</body>
 </html>

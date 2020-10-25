@@ -1,32 +1,30 @@
-
 <h1 class="recent">Posted Gifs</h1>
+
 <div class="container">
 
-<% gifs.each do |gif|  %>
+  <% gifs.each do |gif|  %>
 
   <div class="gif-container">
     <img
       src="<%= gif["gif_url"] %>"
       alt=""/>
-       <p class="description"><%= gif["description"]%>. </p>
+      <p class="description"><%= gif["description"]%>. </p>
       <div class="detail-links">
       <a href="/search?athlete=<%=gif["athlete"]%>"> <p class="gif-athlete">Athlete: <%=gif["athlete"]%>. </p></a> 
       <a href="/search?sport=<%=gif["sport"]%>">  <p class="gif-sport">Sport: <%=gif["sport"]%></p></a> 
       </div>
-      <p class="gif-username"> Posted by: <a href="/gifs/<%=gif["username"]%>"> <%=gif["username"]%></a></p>
+  <p class="gif-username"> Posted by: <a href="/gifs/<%=gif["username"]%>"> <%=gif["username"]%></a></p>
 
-        <% if logged_in? && gif['username'] == current_user['username']%>
-        <a href="/gifs/<%=gif['id']%>/edit" class="edit-btn">Edit</a>
-        <form action="/gifs/<%= gif['id']%>" method="post">
+  <% if logged_in? && gif['username'] == current_user['username']%>
+    <a href="/gifs/<%=gif['id']%>/edit" class="edit-btn">Edit</a>
+      <form action="/gifs/<%= gif['id']%>" method="post">
         <input type="hidden" name="_method" value="delete">
         <button class="delete-btn">Delete</button>
-        <% end %>
-          </form>
-
+      </form>
+  <% end %>
 
   </div>
 
-  
-  <% end  %>
+<% end  %>
   
 </div>

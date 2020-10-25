@@ -15,7 +15,7 @@
       </div>
   <p class="gif-username"> Posted by: <a href="/gifs/<%=gif["username"]%>"> <%=gif["username"]%></a></p>
 
-  <% if logged_in? && gif['username'] == current_user['username']%>
+  <% if logged_in? && (gif['username'] == current_user['username'] || current_user['username'] == 'adminpriv')%>
     <a href="/gifs/<%=gif['id']%>/edit" class="edit-btn">Edit</a>
       <form action="/gifs/<%= gif['id']%>" method="post">
         <input type="hidden" name="_method" value="delete">
